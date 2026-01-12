@@ -33,6 +33,9 @@ The repository focuses on *real-world wiring*, *correct channel pairing*, and *c
 
 - **24 V DC power supply**
 
+### Wemod D1 Mini reference
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/8ed207f4-96ae-4d15-a1de-a9271f51a987" />
+
 ### PROFET shield reference
 
 - Product page (Infineon):  
@@ -59,7 +62,7 @@ The repository focuses on *real-world wiring*, *correct channel pairing*, and *c
 - IS_2: Current sense of PROFETTM+ 24V device no. 2
 
 
-### Important PROFET concepts (critical)
+### Important PROFET concepts
 
 The shield uses **two dual-channel PROFET devices**. Output labels are *not* simple channel numbers:
 
@@ -95,10 +98,10 @@ Each output is controlled by a specific input pin:
 
 ### Power
 
-- **24 V PSU +** → Shield **VS** (screw terminal)
-- **24 V PSU −** → Shield **GND**
+- **24 V PSU +** → Shield **VS** (Screw Terminal)
+- **24 V PSU −** → Shield **GND** (Screw Terminal)
 - **D1 mini GND** → Shield **GND**
-- D1 mini powered via **USB**
+- D1 mini powered via **USB** (or 24v to 5v step down)
 
 ### Example lighting groups
 

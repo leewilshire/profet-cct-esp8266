@@ -1,0 +1,175 @@
+# profet-cct-esp8266
+
+High-side CCT (tunable white) LED controller using an Infineon PROFET 24 V protected switch shield and a WeMos D1 mini (ESP8266). Designed for 24 V constant-voltage LED spots with common negative and separate CW/WW positives, integrated with Home Assistant via ESPHome.
+
+---
+
+## Overview
+
+This project documents a working prototype for driving **24 V CCT LED lighting** using:
+
+- **High-side switching** (no modification to common-negative LED fittings)
+- An **Infineon PROFET™ 24 V protected switch shield**
+- A **WeMos D1 mini (ESP8266)** running **ESPHome**
+- Native **Home Assistant** integration
+
+The repository focuses on *real-world wiring*, *correct channel pairing*, and *common pitfalls* when using the PROFET shield outside a standard Arduino Uno.
+
+---
+
+## Hardware
+
+### Core components
+
+- **Infineon PROFET™ 24 V Protected Switch Shield**  
+  (e.g. BTT6030 / BTT6020 family)
+
+- **WeMos D1 mini (ESP8266)**  
+  Powered via USB during prototyping
+
+- **24 V constant-voltage LED spots**  
+  - Common negative (−)
+  - Separate **CW+** and **WW+**
+
+- **24 V DC power supply**
+
+### PROFET shield reference
+
+- Product page (Infineon):  
+  https://www.infineon.com/cms/en/product/evaluation-boards/24v-protected-switch-shield/
+
+- Example distributor listing:  
+  https://www.digikey.co.uk/en/products/detail/infineon-technologies/24VSHIELDBTT6030TOBO1/
+
+
+::contentReference[oaicite:0]{index=0}
+
+
+### Important PROFET concepts (critical)
+
+The shield uses **two dual-channel PROFET devices**. Output labels are *not* simple channel numbers:
+
+| Output label | Meaning |
+|-------------|--------|
+| 0.0 | Channel 0 of device 0 |
+| 1.0 | Channel 1 of device 0 |
+| 0.1 | Channel 0 of device 1 |
+| 1.1 | Channel 1 of device 1 |
+
+**Correct CCT pairs must stay on the same device:**
+
+✅ Valid CW/WW pairs:
+- **0.0 + 1.0**
+- **0.1 + 1.1**
+
+❌ Invalid (do not use together):
+- 0.0 + 0.1
+- 1.0 + 1.1
+
+Each output is controlled by a specific input pin:
+
+| Output | Input pin |
+|------|----------|
+| 0.0 | IN0_0 |
+| 1.0 | IN1_0 |
+| 0.1 | IN0_1 |
+| 1.1 | IN1_1 |
+
+---
+
+## Wiring summary
+
+### Power
+
+- **24 V PSU +** → Shield **VS** (screw terminal)
+- **24 V PSU −** → Shield **GND**
+- **D1 mini GND** → Shield **GND**
+- D1 mini powered via **USB**
+
+### Example lighting groups
+
+| Room | CW output | WW output |
+|----|----------|----------|
+| Kitchen | 0.1 | 1.1 |
+| Lounge | 0.0 | 1.0 |
+
+- Tie all CW+ for a room together
+- Tie all WW+ for a room together
+- LED negatives remain common to PSU −
+
+### Controller → Shield inputs
+
+| Function | D1 mini pin | Shield input |
+|--------|------------|-------------|
+| Kitchen CW | D5 (GPIO14) | IN0_1 |
+| Kitchen WW | D6 (GPIO12) | IN1_1 |
+| Lounge CW | D7 (GPIO13) | IN0_0 |
+| Lounge WW | D8 (GPIO15) | IN1_0 |
+
+> Note: Pull-down resistors on input pins are **not required**.  
+> The shield is designed for direct MCU drive; external pull-downs may interfere depending on wiring.
+
+---
+
+## Software
+
+### ESPHome
+
+- Platform: **ESP8266**
+- Board: **WeMos D1 mini**
+- PWM frequency: **400 Hz** (works reliably with PROFET inputs)
+
+### ESPHome configuration
+
+```yaml
+esphome:
+  name: kitchen-lounge-spots
+  comment: 2 channel CCT lighting using Infineon PROFET shield
+
+esp8266:
+  board: d1_mini
+
+wifi:
+  ssid: "YOUR_WIFI_SSID"
+  password: "YOUR_WIFI_PASSWORD"
+
+captive_portal:
+
+api:
+ota:
+
+logger:
+  baud_rate: 0
+
+output:
+  - platform: esp8266_pwm
+    id: kitchen_cw
+    pin: D5
+    frequency: 400 Hz
+  - platform: esp8266_pwm
+    id: kitchen_ww
+    pin: D6
+    frequency: 400 Hz
+  - platform: esp8266_pwm
+    id: lounge_cw
+    pin: D7
+    frequency: 400 Hz
+  - platform: esp8266_pwm
+    id: lounge_ww
+    pin: D8
+    frequency: 400 Hz
+
+light:
+  - platform: cwww
+    name: "Kitchen Spots"
+    cold_white: kitchen_cw
+    warm_white: kitchen_ww
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
+
+  - platform: cwww
+    name: "Lounge Spots"
+    cold_white: lounge_cw
+    warm_white: lounge_ww
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K

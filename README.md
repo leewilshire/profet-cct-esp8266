@@ -23,6 +23,8 @@ The repository focuses on *real-world wiring*, *correct channel pairing*, and *c
 
 - **Infineon PROFET™ 24 V Protected Switch Shield**  
   (e.g. BTT6030 / BTT6020 family)
+  - Product page (Infineon): https://www.infineon.com/cms/en/product/evaluation-boards/24v-protected-switch-shield/
+  - Example distributor listing: https://www.digikey.co.uk/en/products/detail/infineon-technologies/24VSHIELDBTT6030TOBO1/
 
 - **WeMos D1 mini (ESP8266)**  
   Powered via USB during prototyping
@@ -34,15 +36,9 @@ The repository focuses on *real-world wiring*, *correct channel pairing*, and *c
 - **24 V DC power supply**
 
 ### Wemod D1 Mini reference
-<img width="400" alt="image" src="https://github.com/user-attachments/assets/8ed207f4-96ae-4d15-a1de-a9271f51a987" />
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/8ed207f4-96ae-4d15-a1de-a9271f51a987" />
 
 ### PROFET shield reference
-
-- Product page (Infineon):  
-  https://www.infineon.com/cms/en/product/evaluation-boards/24v-protected-switch-shield/
-
-- Example distributor listing:  
-  https://www.digikey.co.uk/en/products/detail/infineon-technologies/24VSHIELDBTT6030TOBO1/
 
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/3597c176-852a-4fec-9140-5145ee8f74ba" />
 

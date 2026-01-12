@@ -41,8 +41,22 @@ The repository focuses on *real-world wiring*, *correct channel pairing*, and *c
 - Example distributor listing:  
   https://www.digikey.co.uk/en/products/detail/infineon-technologies/24VSHIELDBTT6030TOBO1/
 
+<img width="969" height="960" alt="image" src="https://github.com/user-attachments/assets/3597c176-852a-4fec-9140-5145ee8f74ba" />
 
-::contentReference[oaicite:0]{index=0}
+#### Pin Definitions and Functions
+- IN0_0: Input to switch channel 0 on PROFETTM+ 24V device no. 0
+- IN1_0: Input to switch channel 1 on PROFETTM+ 24V device no. 0
+- IN0_1: Input to switch channel 0 on PROFETTM+ 24V device no. 1
+- IN1_1: Input to switch channel 1 on PROFETTM+ 24V device no. 1
+- IN0_2: Input to switch channel on PROFETTM+ 24V device no. 2
+- DEN_0: Turns diagnosis for PROFETTM+ 24V device no. 0 on or off
+- DEN_1: Turns diagnosis for PROFETTM+ 24V device no. 1 on or off
+- DEN_2: Turns diagnosis for PROFETTM+ 24V device no. 2 on or off
+- DSEL_0: Selects if the diagnosis of channel 0 or 1 is muxed to the IS Pin
+- DSEL_1: Selects if the diagnosis of channel 0 or 1 is muxed to the IS Pin
+- IS_0: Current sense of PROFETTM+ 24V device no. 0
+- IS_1: Current sense of PROFETTM+ 24V device no. 1
+- IS_2: Current sense of PROFETTM+ 24V device no. 2
 
 
 ### Important PROFET concepts (critical)

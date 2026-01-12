@@ -1,0 +1,35 @@
+output:
+  # Kitchen (wired to OUT 0.1 and OUT 1.1 via IN0_1 and IN1_1)
+  - platform: esp8266_pwm
+    id: out_kitchen_cw
+    pin: D5
+    frequency: 400 Hz
+  - platform: esp8266_pwm
+    id: out_kitchen_ww
+    pin: D6
+    frequency: 400 Hz
+
+  # Lounge (wired to OUT 0.0 and OUT 1.0 via IN0_0 and IN1_0)
+  - platform: esp8266_pwm
+    id: out_lounge_cw
+    pin: D7
+    frequency: 400 Hz
+  - platform: esp8266_pwm
+    id: out_lounge_ww
+    pin: D8
+    frequency: 400 Hz
+
+light:
+  - platform: cwww
+    name: "Kitchen Spots"
+    cold_white: out_kitchen_cw
+    warm_white: out_kitchen_ww
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
+
+  - platform: cwww
+    name: "Lounge Spots"
+    cold_white: out_lounge_cw
+    warm_white: out_lounge_ww
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K

@@ -123,16 +123,45 @@ Each output is controlled by a specific input pin:
 > The shield is designed for direct MCU drive; external pull-downs may interfere depending on wiring.
 
 ---
-
 ## Software
+### ESPHome background
+This project uses **ESPHome** as the firmware layer between the ESP8266 and Home Assistant.
 
-### ESPHome
+ESPHome allows device behaviour to be defined declaratively in YAML rather than writing and maintaining custom firmware. It handles Wi-Fi connectivity, OTA updates, Home Assistant discovery, and PWM output generation, leaving this project to focus purely on hardware mapping and behaviour.
+
+ESPHome is particularly well suited to this application because:
+- PWM outputs can be defined explicitly and mapped cleanly to hardware pins
+- Native support exists for **CWWW (tunable white)** light entities
+- Integration with Home Assistant is automatic via the ESPHome API
+- Firmware can be updated over USB initially and OTA thereafter
+
+This repository assumes basic familiarity with ESPHome but does **not** require prior ESP8266 firmware development experience.
+
+### Installing ESPHome
+The recommended way to install and manage ESPHome is via **Home Assistant**:
+
+- ESPHome documentation:  
+  https://esphome.io/
+
+- Installing ESPHome in Home Assistant:  
+  https://esphome.io/guides/getting_started_hassio.html
+
+Alternatively, ESPHome can be run standalone using the command line:
+
+- ESPHome CLI installation:  
+  https://esphome.io/guides/installing_esphome.html
+
+Once ESPHome is installed, the YAML configuration provided in this repository can be pasted directly into a new device definition and flashed to the WeMos D1 mini over USB.
+
+After the first flash, updates can be performed **over-the-air (OTA)**.
+
+### ESPHome Configuration 
 
 - Platform: **ESP8266**
 - Board: **WeMos D1 mini**
 - PWM frequency: **400 Hz** (works reliably with PROFET inputs)
 
-### ESPHome configuration
+### ESPHome Device Config Yaml
 
 ```yaml
 esphome:

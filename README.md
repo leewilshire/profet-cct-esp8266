@@ -41,7 +41,7 @@ The repository focuses on *real-world wiring*, *correct channel pairing*, and *c
 - Example distributor listing:  
   https://www.digikey.co.uk/en/products/detail/infineon-technologies/24VSHIELDBTT6030TOBO1/
 
-<img width="969" height="960" alt="image" src="https://github.com/user-attachments/assets/3597c176-852a-4fec-9140-5145ee8f74ba" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/3597c176-852a-4fec-9140-5145ee8f74ba" />
 
 #### Pin Definitions and Functions
 - IN0_0: Input to switch channel 0 on PROFETTM+ 24V device no. 0

@@ -23,7 +23,7 @@ The repository focuses on *real-world wiring*, *correct channel pairing*, and *c
 
 - **Infineon PROFET™ 24 V Protected Switch Shield**  
   (e.g. BTT6030 / BTT6020 family)
-  - Product page (Infineon): https://www.infineon.com/cms/en/product/evaluation-boards/24v-protected-switch-shield/
+  - Product page (Infineon): https://www.infineon.com/evaluation-board/24V-SHIELD-BTT6030
   - Example distributor listing: https://www.digikey.co.uk/en/products/detail/infineon-technologies/24VSHIELDBTT6030TOBO1/
 
 - **WeMos D1 mini (ESP8266)**  

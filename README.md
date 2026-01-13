@@ -15,6 +15,22 @@ This project documents a working prototype for driving **24 V CCT LED lighting**
 
 The repository focuses on *real-world wiring*, *correct channel pairing*, and *common pitfalls* when using the PROFET shield outside a standard Arduino Uno.
 
+### Reference light fitting
+
+This project was developed and tested using the following LED downlight:
+
+- **Aten Lighting – 12 V / 24 V Cool–Warm LED Downlight (70 mm)**  
+  https://www.atenlighting.co.uk/product/12v-24v-led-black-cool-warm-downlight-70mm/
+
+These fittings are **constant-voltage CCT (tunable white)** luminaires with:
+- A **common negative (−)** connection
+- Separate **cool white (CW+)** and **warm white (WW+)** positive connections
+- Operation at **24 V DC** (also available in 12 V variants)
+
+Because the negative is common, dimming and colour temperature control must be performed by **high-side switching of the positive rails**. This makes them incompatible with most low-side MOSFET LED controllers and is the primary reason for using an **Infineon PROFET high-side switch** in this design.
+
+Although this repository references a specific Aten Lighting product, the approach applies to any **24 V constant-voltage CW/WW fixture with a common negative**, including many architectural and marine lighting fittings.
+
 ---
 
 ## Hardware
@@ -36,7 +52,7 @@ The repository focuses on *real-world wiring*, *correct channel pairing*, and *c
 
 - **24 V DC power supply**
 
-### Wemod D1 Mini reference
+### Wemos D1 Mini reference
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/8ed207f4-96ae-4d15-a1de-a9271f51a987" />
 
 ### PROFET shield reference
